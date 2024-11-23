@@ -1,0 +1,129 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply antialiased;
+  }
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+.hextech-pattern {
+  background-color: #0A1929;
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(0, 185, 255, 0.1), transparent 60%),
+    radial-gradient(circle at 85% 15%, rgba(255, 122, 0, 0.15), transparent 40%),
+    radial-gradient(circle at 15% 85%, rgba(0, 255, 200, 0.15), transparent 40%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hextech-pattern::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: 
+    repeating-linear-gradient(45deg, rgba(0, 185, 255, 0.1) 0px, transparent 2px),
+    repeating-linear-gradient(-45deg, rgba(255, 122, 0, 0.1) 0px, transparent 2px);
+  background-size: 30px 30px;
+  animation: hextech-flow 20s linear infinite;
+  opacity: 0.5;
+}
+
+.hextech-lines {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(90deg, transparent 49%, rgba(0, 185, 255, 0.1) 50%, transparent 51%),
+    linear-gradient(0deg, transparent 49%, rgba(0, 185, 255, 0.1) 50%, transparent 51%);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(circle at center, black, transparent 80%);
+}
+
+.hextech-glow {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(0, 185, 255, 0.2), transparent 70%);
+  border-radius: 50%;
+  filter: blur(30px);
+  animation: glow-float 10s ease-in-out infinite;
+}
+
+.hextech-button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 185, 255, 0.3);
+}
+
+.hextech-button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(0, 185, 255, 0.2), 
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+}
+
+.hextech-button:hover::before {
+  transform: translateX(100%);
+}
+
+.hextech-button:hover {
+  box-shadow: 0 0 15px rgba(0, 185, 255, 0.3);
+  border-color: rgba(0, 185, 255, 0.5);
+}
+
+.hextech-input {
+  border: 1px solid rgba(0, 185, 255, 0.3);
+  background: rgba(10, 25, 41, 0.7);
+  transition: all 0.3s ease;
+}
+
+.hextech-input:focus {
+  border-color: rgba(0, 185, 255, 0.5);
+  box-shadow: 0 0 15px rgba(0, 185, 255, 0.2);
+}
+
+.hextech-card {
+  background: rgba(10, 25, 41, 0.7);
+  border: 1px solid rgba(0, 185, 255, 0.2);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.hextech-card:hover {
+  border-color: rgba(0, 185, 255, 0.4);
+  box-shadow: 0 0 20px rgba(0, 185, 255, 0.1);
+}
+
+.dark .hextech-pattern {
+  background-color: #0A1929;
+}
+
+@keyframes hextech-flow {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+@keyframes glow-float {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(30px, 30px);
+  }
+}
